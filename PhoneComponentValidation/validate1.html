@@ -1,0 +1,96 @@
+<html>
+<label>Enter Phone number</label>
+import java.util.StringTokenizer;
+
+public class stringtoint{
+
+	public static String Split(String key, int K)
+	{
+		// If an empty string is passed, the function will just return.
+		if(key.length()==0)
+		{
+			return "Empty String";
+		}
+		// Change key to upper case
+		String upper_key = key.toUpperCase();
+		StringBuilder sb = new StringBuilder();
+		// Tokenize key with "-"
+		StringTokenizer st = new StringTokenizer(upper_key,"-");
+		
+		// Create a new create with no hyphens
+		while(st.hasMoreElements())
+		{
+			sb.append(st.nextElement())	;
+		}
+		
+		int remainder = 0;
+		/*To output string in desired format where first block can have fewer than K characters, dividng 
+		 * String in n blocks of K length each and putting remainder characters in first block.
+		 * Using try catch block to handle condition when K=0 is passed*/
+		try
+		{
+			 remainder = sb.length()%K;
+			 System.out.print(sb.subSequence(0,remainder));
+				int i = remainder;
+				while( i<sb.length())
+				{
+					if(i!=0)
+					System.out.print("-");
+					System.out.print(sb.subSequence(i,i+K));
+					i = i+K;
+				}
+		}
+		catch(Exception e)
+		{
+			System.out.println(sb);
+			return "Done";
+		}
+		
+		return "Done";
+	
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//Licence_keys lk = new Licence_keys();
+		Split("2-4A0r7-4k",4);
+	}
+}<body>
+<input type="text" id="example" onkeypress="return myFunction()" value="">
+
+
+<script>
+function myFunction() {
+   //getting element with name 'example'
+   $input=document.getElementById("example").value;
+   //Length of phone number is taken to be 13 because of special characters like hyphen
+   if($input.length<13)
+   {
+      validate($input);
+   }
+   
+   else
+   {
+     alert("wrong format");
+     return false;
+     
+    }
+ }
+ function validate(value)
+ {
+   //including curly braces after length 3
+   if(value.length==3)
+   {
+     document.getElementById("example").value="("+$input+")";
+   }
+   //inclusing hyphen after length 8
+   if(value.length==8)
+   {
+   		document.getElementById("example").value=$input+"-";
+   }
+   
+   
+ }
+</script>
+</body>
+</html>
